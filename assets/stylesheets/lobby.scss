@@ -1,0 +1,26 @@
+$player_margin: 25px;
+$busy: grey;
+
+#players label {
+  display: inline;
+  float: left;
+  margin-right: $player_margin;
+}
+
+#propose-game {
+  margin-top: 10px;
+}
+
+.busy {
+  color: $busy;
+  margin-right: $player_margin;
+}
+
+.lobby-card {
+  padding: 3px;
+}
+
+#lobby-chat {
+  height: 300px;
+  overflow: auto;
+}

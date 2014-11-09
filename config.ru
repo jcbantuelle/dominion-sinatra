@@ -1,0 +1,2 @@
+require './dominion'
+run Dominion

@@ -1,0 +1,97 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.3.6)
+    better_errors (2.0.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
+    byebug (3.5.1)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+      slop (~> 3.6)
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
+    coderay (1.1.0)
+    coffee-script (2.3.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.8.0)
+    columnize (0.8.9)
+    daemons (1.1.9)
+    debug_inspector (0.0.2)
+    debugger-linecache (1.2.0)
+    em-websocket (0.3.8)
+      addressable (>= 2.1.1)
+      eventmachine (>= 0.12.9)
+    erubis (2.7.0)
+    eventmachine (1.0.3)
+    execjs (2.2.2)
+    ffi (1.9.6)
+    hitimes (1.2.2)
+    listen (2.7.11)
+      celluloid (>= 0.15.2)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+    method_source (0.8.2)
+    mime-types (2.4.3)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (2.0.0)
+      byebug (~> 3.4)
+      pry (~> 0.10)
+    puma (2.9.2)
+      rack (>= 1.1, < 2.0)
+    rack (1.5.2)
+    rack-protection (1.5.3)
+      rack
+    rb-fsevent (0.9.4)
+    rb-inotify (0.9.5)
+      ffi (>= 0.5.0)
+    rerun (0.10.0)
+      listen (~> 2.7, >= 2.7.3)
+    sass (3.4.7)
+    sinatra (1.4.5)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
+    sinatra-asset-snack (0.1.6)
+      coffee-script
+      mime-types
+      sass
+      sinatra
+      yajl-ruby
+    sinatra-handlebars (0.0.4)
+      sinatra
+    sinatra-websocket (0.3.0)
+      em-websocket (~> 0.3.6)
+      eventmachine
+      thin (>= 1.3.1)
+    slop (3.6.0)
+    thin (1.6.3)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0)
+      rack (~> 1.0)
+    tilt (1.4.1)
+    timers (4.0.1)
+      hitimes
+    yajl-ruby (1.2.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  better_errors
+  binding_of_caller
+  pry
+  pry-byebug
+  puma
+  rerun
+  sinatra
+  sinatra-asset-snack
+  sinatra-handlebars
+  sinatra-websocket

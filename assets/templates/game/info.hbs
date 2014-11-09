@@ -1,0 +1,36 @@
+{{#if prize_cards}}
+  Prizes:
+  {{#each prize_cards}}
+    <span class="{{type_class}} prize-card">{{title}}</span>
+    <div class="card-tooltip">
+      <img src="/images/cards/{{name}}.jpg", width="176" height="273" />
+    </div>
+  {{/each}}
+  <br />
+  <br />
+{{/if}}
+{{#if has_trade_route}}
+  Trade Route Tokens: {{trade_route_tokens}}
+  <br />
+  <br />
+{{/if}}
+Trash:
+{{#each trash_cards}}
+  <span class="{{type_class}}">{{title}}</span>
+{{/each}}
+<br />
+<br />
+{{#if has_native_village}}
+  Native Village:
+  {{#each native_village_cards}}
+    <span class="{{type_class}}">{{title}}</span>
+  {{/each}}
+  <br />
+  <br />
+{{/if}}
+{{#each player_info}}
+  <strong>{{player_name}}</strong><br />
+  Victory Tokens: {{victory_tokens}}
+  <br />
+  <br />
+{{/each}}
