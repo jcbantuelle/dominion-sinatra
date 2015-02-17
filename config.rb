@@ -4,6 +4,10 @@ require 'sinatra-websocket'
 require 'sinatra/asset_snack'
 require 'sinatra/handlebars'
 require 'better_errors'
+
+module Json;end
+module Websockets;end
+
 Dir[File.dirname(__FILE__) + '/app/**/*.rb'].each {|file| require file }
 
 class DominionConfig < Sinatra::Base

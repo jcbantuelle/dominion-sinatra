@@ -5,11 +5,8 @@ class Dominion < Sinatra::Base
   use DominionConfig
 
   get '/' do
-    if session[:user]
-      erb :lobby
-    else
-      redirect '/sign_in'
-    end
+    require_login
+    erb :lobby
   end
 
   get '/sign_in' do
@@ -17,19 +14,45 @@ class Dominion < Sinatra::Base
   end
 
   post '/sign_in' do
-    name = params[:username]
-    if UserManager.user_exists?(name)
+    if PlayerManager.player_exists?(params[:username])
       @error = 'Username is already in use'
       erb :sign_in
     else
-      session[:user] = UserManager.add_user(name)
+      session[:player] = PlayerManager.add_player(params[:username])
       redirect '/'
     end
   end
 
   get '/sign_out' do
-    UserManager.remove_user(session[:user])
-    session[:user] = nil
+    require_login
+    PlayerManager.remove_player(session[:player])
+    session[:player] = nil
     redirect '/'
   end
+
+  get '/websockets' do
+    request.websocket do |ws|
+      ws.onopen do
+        Websockets::Manager.add_socket(ws, session[:player])
+        Websockets::Lobby.refresh
+      end
+      ws.onmessage do |msg|
+        data = JSON.parse msg
+        action = data['action']
+        Websockets::Actions.action_class(action).send(action, data, session[:player]) if Websockets::Actions.valid_action(action)
+        Websockets::Lobby.refresh
+      end
+      ws.onclose do
+        Websockets::Manager.remove_socket(session[:player])
+        Websockets::Lobby.refresh
+      end
+    end
+  end
+
+  helpers do
+    def require_login
+      redirect '/sign_in' unless session[:player]
+    end
+  end
+
 end
