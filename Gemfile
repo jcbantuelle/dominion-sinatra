@@ -7,8 +7,8 @@ gem 'sinatra-websocket'
 gem 'sinatra-handlebars'
 
 # Server
-gem 'puma'
 gem 'rerun'
+gem 'dotenv'
 
 # Console
 gem 'pry'

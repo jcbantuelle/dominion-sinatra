@@ -23,6 +23,9 @@ GEM
     daemons (1.1.9)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
+    dotenv (0.11.1)
+      dotenv-deployment (~> 0.0.2)
+    dotenv-deployment (0.0.2)
     em-websocket (0.3.8)
       addressable (>= 2.1.1)
       eventmachine (>= 0.12.9)
@@ -44,8 +47,6 @@ GEM
     pry-byebug (2.0.0)
       byebug (~> 3.4)
       pry (~> 0.10)
-    puma (2.9.2)
-      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -87,9 +88,9 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  dotenv
   pry
   pry-byebug
-  puma
   rerun
   sinatra
   sinatra-asset-snack
