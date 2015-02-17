@@ -1,4 +1,4 @@
-class User
+class Player
   attr_accessor :name, :last_active, :status
 
   def initialize(name)
@@ -13,5 +13,11 @@ class User
 
   def inactive?(status = nil)
     (Time.now - @last_active > 300) && (status.nil? || @status == status)
+  end
+
+  def to_json(opts = nil)
+    {
+      name: @name
+    }.to_json
   end
 end
