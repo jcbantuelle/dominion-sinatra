@@ -18,7 +18,9 @@ class DominionConfig < Sinatra::Base
 
   # Configure server
   set :server, 'puma'
-  enable :sessions
+  use Rack::Session::Cookie, key: 'rack.session',
+                             path: '/',
+                             secret: ENV['SESSION_SECRET']
 
   # Handlebars
   register Sinatra::Handlebars
