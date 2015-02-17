@@ -7,6 +7,11 @@
     <title>Dominion</title>
 
     <link href="/stylesheets/application.css" media="all" rel="stylesheet" />
+    <script type="text/javascript" src="/javascript/vendor/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/javascript/vendor/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="/javascript/vendor/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="/javascript/vendor/underscore-min.js"></script>
+    <script type="text/javascript" src="/javascript/vendor/bootstrap.min.js"></script>
     <script type="text/javascript" src="/javascript/templates.js"></script>
     <script type="text/javascript" src="/javascript/application.js"></script>
 
@@ -26,10 +31,10 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="/">Dominion</a>
-          <% if session[:user] %>
+          <% if session[:player] %>
             <div class="container nav-collapse">
               <ul class="nav">
-                <li><a href="#">Welcome <%= session[:user].name %></a></li>
+                <li><a href="#">Welcome <%= session[:player].name %></a></li>
                 <li><a href="/sign_out">Sign Out</a></li>
               </ul>
             </div><!--/.nav-collapse -->

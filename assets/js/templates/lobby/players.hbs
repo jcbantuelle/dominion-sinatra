@@ -1,0 +1,10 @@
+{{#each players}}
+  {{#if current_game}}
+    <span class="busy">{{name}}</span>
+  {{else}}
+    <label for="player_{{name}}" class="checkbox lobby-player">
+      <input type="checkbox" id="player_{{name}}" value="{{name}}" />
+      {{name}}
+    </label>
+  {{/if}}
+{{/each}}

@@ -116,33 +116,33 @@ $ ->
 
   # Log Message
   window.game.log_message = (response) ->
-    $('#game-log').append(HandlebarsTemplates['game/log'](response.log))
+    $('#game-log').append(HandlebarsTemplates.log(response.log))
     $('#game-log').scrollTop($('#game-log')[0].scrollHeight)
 
   window.game.refresh_kingdom_cards = (response)->
-    $('#kingdom-cards').html(HandlebarsTemplates['game/cards'](response.kingdom_cards))
+    $('#kingdom-cards').html(HandlebarsTemplates.cards(response.kingdom_cards))
 
   window.game.refresh_common_cards = (response)->
-    $('#common-cards').html(HandlebarsTemplates['game/cards'](response.common_cards))
+    $('#common-cards').html(HandlebarsTemplates.cards(response.common_cards))
 
   window.game.refresh_turn_status = (response)->
-    $('#turn-status').html(HandlebarsTemplates['game/turn_status'](response))
+    $('#turn-status').html(HandlebarsTemplates.turn_status(response))
 
   window.game.refresh_game_info = (response)->
-    $('#draw-pile').html(HandlebarsTemplates['game/draw_pile'](response.deck_count))
-    $('#discard-pile').html(HandlebarsTemplates['game/discard_pile'](response.discard_count))
+    $('#draw-pile').html(HandlebarsTemplates.draw_pile(response.deck_count))
+    $('#discard-pile').html(HandlebarsTemplates.discard_pile(response.discard_count))
 
   window.game.refresh_turn_actions = (response)->
-    $('#turn-actions').html(HandlebarsTemplates['game/turn_actions'](response))
+    $('#turn-actions').html(HandlebarsTemplates.turn_actions(response))
 
   window.game.refresh_hand = (response)->
-    $('#hand').html(HandlebarsTemplates['game/hand'](response.hand))
+    $('#hand').html(HandlebarsTemplates.hand(response.hand))
 
   window.game.refresh_extra_info = (response)->
-    $('#extra-info').html(HandlebarsTemplates['game/info'](response))
+    $('#extra-info').html(HandlebarsTemplates.info(response))
 
   window.game.refresh_end_game = (response)->
-    $('#finished-game').html(HandlebarsTemplates['game/end_game'](response))
+    $('#finished-game').html(HandlebarsTemplates.end_game(response))
 
   # Chat Window
   window.game.chat = (response) ->

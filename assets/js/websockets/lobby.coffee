@@ -1,5 +1,5 @@
 $ ->
-  socket = new WebSocket("ws://#{window.location.host}/lobby/update")
+  socket = new WebSocket("ws://#{window.location.host}/websockets")
   window.lobby = {}
   player_count_error = 'Game can not have more than 4 players.'
 
@@ -19,7 +19,7 @@ $ ->
     event.preventDefault()
     $input = $chat_form.find("input#message")
     message = $input.val()
-    socket.send(JSON.stringify(action: 'chat', message: message))
+    socket.send(JSON.stringify(action: 'lobby_chat', message: message))
     $input.val("")
   $chat_output = $("#lobby-chat")
 
@@ -41,12 +41,8 @@ $ ->
       lobby.refresh(response)
     else if response.action == 'propose'
       lobby.propose(response)
-    else if response.action == 'player_count_error'
-      alert player_count_error
     else if response.action == 'player_in_game_error'
       lobby.player_in_game_error(response)
-    else if response.action == 'accept'
-      alert "#{response.player.username} has accepted the game."
     else if response.action == 'decline'
       lobby.decline(response)
     else if response.action == 'timeout'
@@ -60,30 +56,30 @@ $ ->
 
   # Refresh Lobby
   window.lobby.refresh = (response) ->
-    $('#players').html(HandlebarsTemplates['lobby/players'](response))
+    $('#players').html(HandlebarsTemplates.players(response))
 
   # Render Game Proposal
   window.lobby.propose = (response) ->
     $('#propose-game').hide()
-    $('#proposal').html(HandlebarsTemplates['lobby/game_proposal'](response))
+    $('#proposal').html(HandlebarsTemplates.game_proposal(response))
 
   # Render Declined Game
   window.lobby.decline = (response) ->
     $('#propose-game').show()
-    $('#proposal').html(HandlebarsTemplates['lobby/declined_game'](response))
+    $('#proposal').html(HandlebarsTemplates.declined_game(response))
 
   # Render Proposal Timeout
   window.lobby.timeout = (response) ->
     $('#propose-game').show()
-    $('#proposal').html(HandlebarsTemplates['lobby/proposal_timeout'](response))
+    $('#proposal').html(HandlebarsTemplates.proposal_timeout(response))
 
   # Render Accept Feedback
   window.lobby.accept_received = (response) ->
-    $('#proposal-form-container').html(HandlebarsTemplates['lobby/accept_received'](response))
+    $('#proposal-form-container').html(HandlebarsTemplates.accept_received(response))
 
   # Render Player In Game Error
   window.lobby.player_in_game_error = (response) ->
-    $('#proposal').html(HandlebarsTemplates['lobby/player_in_game_error'](response))
+    $('#proposal').html(HandlebarsTemplates.player_in_game_error(response))
 
   # Chat Window
   window.lobby.chat = (response) ->
