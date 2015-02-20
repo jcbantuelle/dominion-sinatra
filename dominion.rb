@@ -33,17 +33,17 @@ class Dominion < Sinatra::Base
   get '/websockets' do
     request.websocket do |ws|
       ws.onopen do
-        Websockets::Manager.add_socket(ws, session[:player])
+        WebsocketManager.add_socket(ws, session[:player])
         Websockets::Lobby.refresh
       end
       ws.onmessage do |msg|
         data = JSON.parse msg
         action = data['action']
-        Websockets::Actions.action_class(action).send(action, data, session[:player]) if Websockets::Actions.valid_action(action)
+        ActionClass.find(action).send(action, data, session[:player]) if ActionClass.valid?(action)
         Websockets::Lobby.refresh
       end
       ws.onclose do
-        Websockets::Manager.remove_socket(session[:player])
+        WebsocketManager.remove_socket(session[:player])
         Websockets::Lobby.refresh
       end
     end

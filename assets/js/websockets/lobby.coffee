@@ -7,11 +7,11 @@ $ ->
   $form = $("form#lobby")
   $form.on "submit", (event) ->
     event.preventDefault()
-    player_ids = _.map($form.find("input:checked"), checkbox_value)
-    if player_ids.length > 3
+    player_names = _.map($form.find("input:checked"), checkbox_value)
+    if player_names.length > 3
       alert player_count_error
     else
-      socket.send(JSON.stringify(action: 'propose_game', player_ids: player_ids))
+      socket.send(JSON.stringify(action: 'propose_game', player_names: player_names))
 
   # Chat Window
   $chat_form = $("form#chat")

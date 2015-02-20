@@ -3,14 +3,6 @@ class PlayerManager
 
   class << self
 
-    def players
-      @@players
-    end
-
-    def players_excluding_self(players, name)
-      players.reject{ |player_name, player| player_name == name }
-    end
-
     def flush_inactive_players
       @@players.reject!{ |name, player| player.inactive?(:lobby) }
     end
@@ -29,9 +21,14 @@ class PlayerManager
       @@players.key?(name)
     end
 
-    def lobby_players
-      @@players.select{ |name, player| player.status == :lobby }
+    def find(names = nil)
+      if names.is_a? Array
+        @@players.values.select{|player| names.include?(player.name)}
+      elsif names
+        @@players[names]
+      else
+        @@players.values
+      end
     end
-
   end
 end

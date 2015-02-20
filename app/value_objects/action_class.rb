@@ -1,12 +1,13 @@
-class Websockets::Actions
+class ActionClass
 
   VALID_ACTIONS = {
-    'lobby_chat' => :lobby
+    'lobby_chat' => :lobby,
+    'propose_game' => :lobby
   }
 
   class << self
 
-    def action_class(action)
+    def find(action)
       case VALID_ACTIONS[action]
       when :lobby
         Websockets::Lobby
@@ -15,10 +16,9 @@ class Websockets::Actions
       end
     end
 
-    def valid_action(action)
+    def self.valid?(action)
       VALID_ACTIONS.has_key?(action)
     end
-
   end
 
 end
