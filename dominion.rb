@@ -30,21 +30,18 @@ class Dominion < Sinatra::Base
     redirect '/'
   end
 
-  get '/websockets' do
+  get '/websockets/lobby' do
     request.websocket do |ws|
       ws.onopen do
-        WebsocketManager.add_socket(ws, session[:player])
-        Websockets::Lobby.refresh
+        open_websocket(ws)
       end
       ws.onmessage do |msg|
         data = JSON.parse msg
         action = data['action']
-        ActionClass.find(action).send(action, data, session[:player]) if ActionClass.valid?(action)
-        Websockets::Lobby.refresh
+        Websockets::Lobby.send(action, data, session[:player]) if Websockets::Lobby.respond_to?(action)
       end
       ws.onclose do
-        WebsocketManager.remove_socket(session[:player])
-        Websockets::Lobby.refresh
+        close_websocket
       end
     end
   end
@@ -52,6 +49,16 @@ class Dominion < Sinatra::Base
   helpers do
     def require_login
       redirect '/sign_in' unless session[:player]
+    end
+
+    def open_websocket(ws)
+      WebsocketManager.add_socket(ws, session[:player])
+      Websockets::Lobby.refresh
+    end
+
+    def close_websocket
+      WebsocketManager.remove_socket(session[:player])
+      Websockets::Lobby.refresh
     end
   end
 

@@ -1,5 +1,7 @@
 class Json::Lobby
 
+  extend JsonHelper
+
   class << self
 
     def refresh(players)
@@ -28,7 +30,7 @@ class Json::Lobby
         players: game.players,
         cards: game.kingdom_cards,
         proposer: proposer,
-        is_proposer: same_player?(player, proposer),
+        is_proposer: same_player?(player, proposer.name),
         game_id: game.id
       }.to_json
     end

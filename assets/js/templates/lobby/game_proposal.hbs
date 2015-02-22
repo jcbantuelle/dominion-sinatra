@@ -2,7 +2,7 @@
   {{#if is_proposer}}
     You have
   {{else}}
-    <strong>{{proposer.username}}</strong> has
+    <strong>{{proposer.name}}</strong> has
   {{/if}}
   proposed a game.
 </div>
@@ -12,14 +12,14 @@
 <div>
   <strong>Players:</strong>
   {{#each players}}
-    {{username}}
+    {{name}}
   {{/each}}
 </div>
 
 <div>
   <strong>Cards:</strong>
   {{#each cards}}
-    <span class="lobby-card {{type_class}}">{{title}}</span>
+    <span class="lobby-card {{type_class}}">{{name}}</span>
   {{/each}}
 </div>
 

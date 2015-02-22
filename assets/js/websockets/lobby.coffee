@@ -1,5 +1,5 @@
 $ ->
-  socket = new WebSocket("ws://#{window.location.host}/websockets")
+  socket = new WebSocket("ws://#{window.location.host}/websockets/lobby")
   window.lobby = {}
   player_count_error = 'Game can not have more than 4 players.'
 

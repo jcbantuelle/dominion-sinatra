@@ -8,6 +8,8 @@ require 'better_errors'
 module Json;end
 module Websockets;end
 
+Dir[File.dirname(__FILE__) + '/app/models/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/app/cards/modules/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/app/**/*.rb'].each {|file| require file }
 
 class DominionConfig < Sinatra::Base
